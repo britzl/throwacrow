@@ -1,0 +1,93 @@
+images {
+  image: "/assets/images/alienBeige_round.png"
+}
+images {
+  image: "/assets/images/alienBlue_round.png"
+}
+images {
+  image: "/assets/images/alienBlue_square.png"
+}
+images {
+  image: "/assets/images/alienGreen_round.png"
+}
+images {
+  image: "/assets/images/alienPink_round.png"
+}
+images {
+  image: "/assets/images/alienYellow_round.png"
+}
+images {
+  image: "/assets/images/coinBronze.png"
+}
+images {
+  image: "/assets/images/coinDiamond.png"
+}
+images {
+  image: "/assets/images/coinGold.png"
+}
+images {
+  image: "/assets/images/coinSilver.png"
+}
+images {
+  image: "/assets/images/colored_talltrees.png"
+}
+images {
+  image: "/assets/images/elementExplosive011.png"
+}
+images {
+  image: "/assets/images/elementExplosive014.png"
+}
+images {
+  image: "/assets/images/elementExplosive049.png"
+}
+images {
+  image: "/assets/images/elementGlass014.png"
+}
+images {
+  image: "/assets/images/elementGlass017.png"
+}
+images {
+  image: "/assets/images/elementGlass049.png"
+}
+images {
+  image: "/assets/images/elementStone001.png"
+}
+images {
+  image: "/assets/images/elementStone007.png"
+}
+images {
+  image: "/assets/images/elementStone011.png"
+}
+images {
+  image: "/assets/images/elementStone014.png"
+}
+images {
+  image: "/assets/images/elementStone045.png"
+}
+images {
+  image: "/assets/images/elementStone046.png"
+}
+images {
+  image: "/assets/images/elementWood012.png"
+}
+images {
+  image: "/assets/images/elementWood015.png"
+}
+images {
+  image: "/assets/images/elementWood047.png"
+}
+images {
+  image: "/assets/images/starBronze.png"
+}
+images {
+  image: "/assets/images/starDiamond.png"
+}
+images {
+  image: "/assets/images/starGold.png"
+}
+images {
+  image: "/assets/images/starSilver.png"
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0

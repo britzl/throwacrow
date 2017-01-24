@@ -1,0 +1,87 @@
+local BG_COLOR = vmath.vector4(213/255, 237/255, 246/255, 1)
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("camera", "acquire_camera_focus")
+	msg.post("#collisionobject", "disable")
+	self.initial_position = go.get_world_position()
+	self.camera_offset = self.initial_position - go.get_world_position("camera")
+	self.flinging = false
+end
+
+function final(self)
+	msg.post(".", "release_input_focus")
+	msg.post("camera", "release_camera_focus")
+end
+
+function update(self, dt)
+	msg.post("@render:", "clear_color", { color = BG_COLOR })
+	msg.post("@render:", "draw_text", { text = "Click and drag to launch", position = vmath.vector3(20, 40, 0) } )
+	--msg.post("@render:", "draw_text", { text = "Space to Reset", position = vmath.vector3(20, 20, 0) } )
+	go.set_position(go.get_world_position() - self.camera_offset, "camera")
+	
+	-- do we have a bird in the air?
+	if self.flinging then
+		if self.idle_delay > 0 then
+			self.idle_delay = self.idle_delay - 1
+		else
+			local linear_velocity = go.get("#collisionobject", "linear_velocity")
+			local angular_velocity = go.get("#collisionobject", "angular_velocity")
+			if vmath.length(linear_velocity) < 10 and vmath.length(angular_velocity) < 10 then
+				msg.post("#collisionobject", "disable")
+				msg.post(".", "acquire_input_focus")
+				go.set_position(self.initial_position)
+				self.flinging = false
+			end
+		end
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then
+	end
+end
+
+function on_input(self, action_id, action)
+	local action_position = vmath.vector3(action.x, action.y, 0)
+	if action_id == hash("touch") then
+		if action.pressed then
+			-- did we click on the bird?
+			if vmath.length(action_position + go.get_world_position("camera") - self.initial_position) < 50 then
+				self.aiming = true
+				self.pressed_position = action_position
+			end
+		elseif action.released then
+			if self.aiming then
+				local direction = self.pressed_position - action_position
+				msg.post("#collisionobject", "enable")
+				msg.post("#collisionobject", "apply_force", { force = direction * 250 * go.get("#collisionobject", "mass"), position = go.get_world_position() })
+				msg.post(".", "release_input_focus")
+				self.idle_delay = 2
+				self.flinging = true
+				self.aiming = false
+				self.pressed_position = nil
+			end
+		end
+	-- mouse/finger moved while aiming?
+	elseif self.aiming then
+		local dx = self.pressed_position.x - action_position.x
+		local dy = self.pressed_position.y - action_position.y
+		local radians = math.atan2(dy, dx)
+		local cos = math.cos(radians)
+		local sin = math.sin(radians)
+		local distance = math.sqrt(dx * dx + dy * dy)
+		local max_distance = 120
+		if distance > max_distance then
+			dx = cos * max_distance
+			dy = sin * max_distance
+			distance = max_distance
+		end
+		go.set_position(vmath.vector3(self.initial_position.x - dx, self.initial_position.y - dy, self.initial_position.z))
+	end
+end
+
+function on_reload(self)
+    -- Add reload-handling code here
+    -- Remove this function if not needed
+end

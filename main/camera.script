@@ -1,0 +1,29 @@
+function init(self)
+	msg.post("#camera", "acquire_camera_focus")
+	self.initial_position = go.get_position()
+end
+
+function final(self)
+	msg.post("#camera", "release_camera_focus")
+end
+
+function update(self, dt)
+	local pos = go.get_position()
+	pos.y = math.max(pos.y, self.initial_position.y)
+	go.set_position(pos)
+end
+
+function on_message(self, message_id, message, sender)
+    -- Add message-handling code here
+    -- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+    -- Add input-handling code here
+    -- Remove this function if not needed
+end
+
+function on_reload(self)
+    -- Add reload-handling code here
+    -- Remove this function if not needed
+end
