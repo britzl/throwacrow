@@ -4,7 +4,7 @@ go.property("damaged", hash("elementStone014"))
 go.property("almost_destroyed", hash("elementStone046"))
 
 local COLLISION_RESPONSE = hash("collision_response")
-local BIRD = hash("bird")
+local GROUND = hash("ground")
 
 function init(self)
 	self.mass = go.get("#collisionobject", "mass")
@@ -12,39 +12,30 @@ function init(self)
 	self.damage_levels = { self.almost_destroyed, self.damaged, self.undamaged }
 end
 
-function final(self)
-    -- Add finalization code here
-    -- Remove this function if not needed
-end
-
-function update(self, dt)
-    -- Add update code here
-    -- Remove this function if not needed
-end
-
 function on_message(self, message_id, message, sender)
 	if message_id == COLLISION_RESPONSE then
 		local other_url = msg.url(nil, message.other_id, "collisionobject")
-		local velocity = vmath.length(go.get(other_url, "linear_velocity"))
-		if velocity > 50 then
-			local other_mass = go.get(other_url, "mass")
-			local damage = velocity * 0.01 * self.mass / other_mass
-			print(damage)
-			self.durability = self.durability - damage
-			if self.durability <= 0 then
-				go.delete()
-			else
-				local damage_level = math.ceil(3 * self.durability / self.initial_durability)
-				print(damage, self.durability, math.ceil(3 * self.durability / self.initial_durability))
-				msg.post("#sprite", "play_animation", { id = self.damage_levels[damage_level] })
-			end
+		local other_velocity = vmath.length(go.get(other_url, "linear_velocity"))
+		local other_mass = go.get(other_url, "mass")
+
+		-- damage is based on the mass ratio between what we're colliding with and own mass
+		-- combined with the velocity of the object we're colliding with
+		-- if we are colliding with the ground we use own velocity and a fixed mass
+		local velocity = other_velocity
+		if message.group == GROUND then
+			velocity = vmath.length(go.get("#collisionobject", "linear_velocity"))
+			other_mass = 1000
+		end
+
+		local damage = velocity * 0.0075 * self.mass / other_mass
+		self.durability = self.durability - damage
+		if self.durability <= 0 then
+			go.delete()
+		else
+			local damage_level = math.ceil(3 * self.durability / self.initial_durability)
+			msg.post("#sprite", "play_animation", { id = self.damage_levels[damage_level] })
 		end
 	end
-end
-
-function on_input(self, action_id, action)
-    -- Add input-handling code here
-    -- Remove this function if not needed
 end
 
 function on_reload(self)

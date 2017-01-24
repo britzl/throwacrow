@@ -24,7 +24,7 @@ instances {
   prototype: "/main/stoneblock_square.go"
   position {
     x: 899.8783
-    y: 564.2472
+    y: 560.0518
     z: 0.0
   }
   rotation {
@@ -64,7 +64,7 @@ instances {
   prototype: "/main/stoneblock_square.go"
   position {
     x: 749.7269
-    y: 215.50539
+    y: 215.03925
     z: 0.0
   }
   rotation {
@@ -84,7 +84,7 @@ instances {
   prototype: "/main/stoneblock_square.go"
   position {
     x: 900.259
-    y: 215.77443
+    y: 215.30829
     z: 0.0
   }
   rotation {
@@ -104,7 +104,7 @@ instances {
   prototype: "/main/stoneblock_square.go"
   position {
     x: 898.6427
-    y: 354.93414
+    y: 354.00186
     z: 0.0
   }
   rotation {
@@ -124,7 +124,7 @@ instances {
   prototype: "/main/stoneblock_square.go"
   position {
     x: 750.42334
-    y: 355.24863
+    y: 354.31635
     z: 0.0
   }
   rotation {
@@ -144,7 +144,7 @@ instances {
   prototype: "/main/stoneblock_square.go"
   position {
     x: 749.71155
-    y: 424.68997
+    y: 422.82538
     z: 0.0
   }
   rotation {
@@ -164,7 +164,7 @@ instances {
   prototype: "/main/stoneblock_square.go"
   position {
     x: 897.8293
-    y: 425.1428
+    y: 423.2782
     z: 0.0
   }
   rotation {
@@ -184,7 +184,7 @@ instances {
   prototype: "/main/stoneblock_square.go"
   position {
     x: 751.30194
-    y: 565.05536
+    y: 560.86
     z: 0.0
   }
   rotation {
@@ -204,7 +204,7 @@ instances {
   prototype: "/main/stoneblock_round.go"
   position {
     x: 826.5107
-    y: 600.7555
+    y: 561.38715
     z: 0.0
   }
   rotation {
@@ -224,7 +224,7 @@ instances {
   prototype: "/main/woodenblock_square.go"
   position {
     x: 824.48486
-    y: 285.43518
+    y: 284.5029
     z: 0.0
   }
   rotation {
@@ -244,7 +244,7 @@ instances {
   prototype: "/main/woodenblock_square.go"
   position {
     x: 824.48486
-    y: 494.39096
+    y: 492.0602
     z: 0.0
   }
   rotation {

@@ -7,6 +7,8 @@ function init(self)
 	self.initial_position = go.get_world_position()
 	self.camera_offset = self.initial_position - go.get_world_position("camera")
 	self.flinging = false
+	self.aiming = false
+	self.idle_frames = 0
 end
 
 function final(self)
@@ -16,29 +18,28 @@ end
 
 function update(self, dt)
 	msg.post("@render:", "clear_color", { color = BG_COLOR })
-	msg.post("@render:", "draw_text", { text = "Click and drag to launch", position = vmath.vector3(20, 40, 0) } )
-	--msg.post("@render:", "draw_text", { text = "Space to Reset", position = vmath.vector3(20, 20, 0) } )
+	msg.post("@render:", "draw_text", { text = "Click and drag to fling", position = vmath.vector3(20, 40, 0) } )
 	go.set_position(go.get_world_position() - self.camera_offset, "camera")
 	
 	-- do we have a bird in the air?
 	if self.flinging then
-		if self.idle_delay > 0 then
-			self.idle_delay = self.idle_delay - 1
-		else
-			local linear_velocity = go.get("#collisionobject", "linear_velocity")
-			local angular_velocity = go.get("#collisionobject", "angular_velocity")
-			if vmath.length(linear_velocity) < 10 and vmath.length(angular_velocity) < 10 then
+		-- get angular and linear velocity and start counting the number of frames when
+		-- we're more or less still/idle
+		-- if we're idle for a number of frames we assume that the system is at rest and
+		-- let the player fling again
+		local linear_velocity = go.get("#collisionobject", "linear_velocity")
+		local angular_velocity = go.get("#collisionobject", "angular_velocity")
+		if vmath.length(linear_velocity) < 5 and vmath.length(angular_velocity) < 5 then
+			self.idle_frames = self.idle_frames + 1
+			if self.idle_frames > 10 then
 				msg.post("#collisionobject", "disable")
 				msg.post(".", "acquire_input_focus")
 				go.set_position(self.initial_position)
 				self.flinging = false
 			end
+		else
+			self.idle_frames = 0
 		end
-	end
-end
-
-function on_message(self, message_id, message, sender)
-	if message_id == hash("collision_response") then
 	end
 end
 
@@ -46,25 +47,33 @@ function on_input(self, action_id, action)
 	local action_position = vmath.vector3(action.x, action.y, 0)
 	if action_id == hash("touch") then
 		if action.pressed then
-			-- did we click on the bird?
+			-- did we click on the bird? if yes, then start aiming
 			if vmath.length(action_position + go.get_world_position("camera") - self.initial_position) < 50 then
 				self.aiming = true
 				self.pressed_position = action_position
 			end
 		elseif action.released then
+			-- did we release while aiming? if yes, then fling the bird
 			if self.aiming then
 				local direction = self.pressed_position - action_position
 				msg.post("#collisionobject", "enable")
 				msg.post("#collisionobject", "apply_force", { force = direction * 250 * go.get("#collisionobject", "mass"), position = go.get_world_position() })
 				msg.post(".", "release_input_focus")
-				self.idle_delay = 2
 				self.flinging = true
 				self.aiming = false
+				self.idle_frames = 0
 				self.pressed_position = nil
 			end
 		end
+	elseif action_id == hash("toggle_physics_debug") and action.released then
+		msg.post("@system:", "toggle_physics_debug")
+	elseif action_id == hash("toggle_profiler") and action.released then
+		msg.post("@system:", "toggle_profile")
 	-- mouse/finger moved while aiming?
 	elseif self.aiming then
+		-- calculate the distance we've moved from the position where we started
+		-- dragging the bird
+		-- limit this distance to below a threshold value
 		local dx = self.pressed_position.x - action_position.x
 		local dy = self.pressed_position.y - action_position.y
 		local radians = math.atan2(dy, dx)
