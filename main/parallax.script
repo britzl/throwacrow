@@ -1,0 +1,14 @@
+function init(self)
+	self.initial_camera_position = go.get_position("camera")
+	self.initial_position = go.get_position()
+	self.offset_factor = self.initial_position.z
+end
+
+function update(self, dt)
+	local camera_position = go.get_position("camera")
+	local diff = self.initial_camera_position - camera_position
+	diff.y = diff.y * 0.25
+	diff.z = 0
+	
+	go.set_position(self.initial_position + diff * self.offset_factor)
+end

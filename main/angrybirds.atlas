@@ -29,9 +29,6 @@ images {
   image: "/assets/images/coinSilver.png"
 }
 images {
-  image: "/assets/images/colored_talltrees.png"
-}
-images {
   image: "/assets/images/elementExplosive011.png"
 }
 images {
@@ -87,6 +84,69 @@ images {
 }
 images {
   image: "/assets/images/starSilver.png"
+}
+images {
+  image: "/assets/images/debrisGlass_1.png"
+}
+images {
+  image: "/assets/images/debrisGlass_2.png"
+}
+images {
+  image: "/assets/images/debrisGlass_3.png"
+}
+images {
+  image: "/assets/images/debrisStone_1.png"
+}
+images {
+  image: "/assets/images/debrisStone_2.png"
+}
+images {
+  image: "/assets/images/debrisStone_3.png"
+}
+images {
+  image: "/assets/images/debrisWood_1.png"
+}
+images {
+  image: "/assets/images/debrisWood_2.png"
+}
+images {
+  image: "/assets/images/debrisWood_3.png"
+}
+images {
+  image: "/assets/images/Walking Platforms 8.png"
+}
+images {
+  image: "/assets/images/Clouds 2.png"
+}
+images {
+  image: "/assets/images/Clouds 7.png"
+}
+images {
+  image: "/assets/images/Mountain 1.png"
+}
+images {
+  image: "/assets/images/Mountain 2.png"
+}
+images {
+  image: "/assets/images/Mountain 3.png"
+}
+images {
+  image: "/assets/images/Forest Tree 13.png"
+}
+images {
+  image: "/assets/images/Forest Tree 6.png"
+}
+images {
+  image: "/assets/images/Forest Tree 7.png"
+}
+images {
+  image: "/assets/images/Clouds 6.png"
+}
+images {
+  image: "/assets/images/parrot.png"
+}
+images {
+  image: "/assets/images/Rocks 8.png"
 }
 margin: 0
 extrude_borders: 2

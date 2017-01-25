@@ -1,0 +1,11 @@
+go.property("image", hash("debrisStone_1"))
+
+function init(self)
+	msg.post("#sprite", "play_animation", { id = self.image })
+	
+	local to = go.get_world_position() - vmath.vector3(math.random(-10, 10), 150, 0)
+	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, to, go.EASING_INCUBIC, 0.5, 0, function()
+		go.delete()
+	end)
+	go.animate(".", "euler.z", go.PLAYBACK_ONCE_FORWARD, math.random(360), go.EASING_INCUBIC, 0.5)
+end

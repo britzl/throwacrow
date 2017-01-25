@@ -27,13 +27,22 @@ function on_message(self, message_id, message, sender)
 			other_mass = 1000
 		end
 
-		local damage = velocity * 0.0075 * self.mass / other_mass
-		self.durability = self.durability - damage
-		if self.durability <= 0 then
-			go.delete()
-		else
-			local damage_level = math.ceil(3 * self.durability / self.initial_durability)
-			msg.post("#sprite", "play_animation", { id = self.damage_levels[damage_level] })
+		-- only apply damage if the velocity is high enough
+		if velocity > 20 then
+			local damage = velocity * 0.01 * self.mass / other_mass
+			self.durability = self.durability - damage
+			if self.durability <= 0 then
+				go.delete()
+				for i=1,5 do
+					local pos = go.get_world_position() + vmath.vector3(math.random(-30, 30), math.random(-30, 30), 0)
+					local rot = vmath.quat_rotation_z(math.rad(math.random(360)))
+					local scale = math.random(5, 8) / 10
+					factory.create("#factory", pos, rot, {}, scale)
+				end
+			else
+				local damage_level = math.ceil(3 * self.durability / self.initial_durability)
+				msg.post("#sprite", "play_animation", { id = self.damage_levels[damage_level] })
+			end
 		end
 	end
 end

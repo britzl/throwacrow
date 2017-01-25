@@ -14,7 +14,7 @@ components {
   }
   properties {
     id: "durability"
-    value: "50.0"
+    value: "100.0"
     type: PROPERTY_TYPE_NUMBER
   }
   properties {
@@ -88,6 +88,23 @@ embedded_components {
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"
   "locked_rotation: false\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
+  id: "factory"
+  type: "factory"
+  data: "prototype: \"/main/debris.go\"\n"
   ""
   position {
     x: 0.0

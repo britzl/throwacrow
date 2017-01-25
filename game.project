@@ -15,6 +15,7 @@ height = 720
 [physics]
 scale = 0.02
 gravity_y = -500
+debug = 0
 
 [script]
 shared_state = 1

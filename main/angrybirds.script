@@ -4,11 +4,17 @@ function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("camera", "acquire_camera_focus")
 	msg.post("#collisionobject", "disable")
-	self.initial_position = go.get_world_position()
-	self.camera_offset = self.initial_position - go.get_world_position("camera")
-	self.flinging = false
-	self.aiming = false
-	self.idle_frames = 0
+
+	-- store initial position and rotation so that we can reset after flinging
+	self.initial_position = go.get_position()
+	self.initial_rotation = go.get_rotation()
+
+	-- keep track of the camera offset since we need to keep the offset when we let the camera follow the flung bird
+	self.camera_offset = go.get_world_position() - go.get_world_position("camera")
+
+	self.flinging = false		-- true if we are currently flinging
+	self.aiming = false			-- true if we are currently aiming
+	self.idle_frames = 0		-- the number of frames where the flung bird has been idle
 end
 
 function final(self)
@@ -19,6 +25,8 @@ end
 function update(self, dt)
 	msg.post("@render:", "clear_color", { color = BG_COLOR })
 	msg.post("@render:", "draw_text", { text = "Click and drag to fling", position = vmath.vector3(20, 40, 0) } )
+	
+	-- update the camera position to follow the flung bird
 	go.set_position(go.get_world_position() - self.camera_offset, "camera")
 	
 	-- do we have a bird in the air?
@@ -35,6 +43,7 @@ function update(self, dt)
 				msg.post("#collisionobject", "disable")
 				msg.post(".", "acquire_input_focus")
 				go.set_position(self.initial_position)
+				go.set_rotation(self.initial_rotation)
 				self.flinging = false
 			end
 		else
@@ -48,7 +57,7 @@ function on_input(self, action_id, action)
 	if action_id == hash("touch") then
 		if action.pressed then
 			-- did we click on the bird? if yes, then start aiming
-			if vmath.length(action_position + go.get_world_position("camera") - self.initial_position) < 50 then
+			if vmath.length(action_position + go.get_world_position("camera") - go.get_world_position()) < 50 then
 				self.aiming = true
 				self.pressed_position = action_position
 			end
