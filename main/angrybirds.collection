@@ -742,9 +742,9 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 110.246635
+    x: 148.82506
     y: 296.1601
-    z: 0.0
+    z: 0.1
   }
   rotation {
     x: 0.0
@@ -1841,26 +1841,6 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"sprite1\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"tile_set: \\\"/main/angrybirds.atlas\\\"\\n"
-  "default_animation: \\\"Forest Tree 13\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
-  "\"\n"
-  "  position {\n"
-  "    x: 91.03659\n"
-  "    y: 127.37206\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  "embedded_components {\n"
   "  id: \"sprite10\"\n"
   "  type: \"sprite\"\n"
   "  data: \"tile_set: \\\"/main/angrybirds.atlas\\\"\\n"
@@ -2155,6 +2135,46 @@ embedded_instances {
   scale3 {
     x: 0.75
     y: 0.75
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "bird_tree"
+  data: "embedded_components {\n"
+  "  id: \"sprite1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"tile_set: \\\"/main/angrybirds.atlas\\\"\\n"
+  "default_animation: \\\"Forest Tree 13\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 91.03659\n"
+  "    y: 127.37206\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 0.0
+    y: 133.41704
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
     z: 1.0
   }
 }
