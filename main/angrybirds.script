@@ -15,6 +15,7 @@ function init(self)
 	self.flinging = false		-- true if we are currently flinging
 	self.aiming = false			-- true if we are currently aiming
 	self.idle_frames = 0		-- the number of frames where the flung bird has been idle
+	self.score = 0
 end
 
 function final(self)
@@ -50,6 +51,13 @@ function update(self, dt)
 		else
 			self.idle_frames = 0
 		end
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("destroyed_block") then
+		self.score = self.score + message.score
+		msg.post("#gui", "update_score", { score = self.score })
 	end
 end
 
