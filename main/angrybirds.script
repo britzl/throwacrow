@@ -13,9 +13,12 @@ function init(self)
 
 	-- keep track of the camera offset since we need to keep the offset when we let the camera follow the flung bird
 	self.camera_offset = go.get_world_position() - go.get_world_position("camera")
-	
+
 	-- the target position of the camera that we will tween towards every frame
 	self.camera_target = go.get_position("camera")
+
+	-- the current camera zoom from which we will tween to the target zoom value
+	self.camera_zoom = 1
 
 	self.flinging = false		-- true if we are currently flinging
 	self.aiming = false			-- true if we are currently aiming
@@ -51,21 +54,22 @@ function update(self, dt)
 	msg.post("@render:", "draw_text", { text = "Click and drag to fling", position = vmath.vector3(20, 40, 0) } )
 
 	--
-	-- let the camera follow the bird while it is flung
+	-- adjust camera target and zoom level while flinging 
 	--
-	if self.flinging then
-		self.camera_target = go.get_position() - self.camera_offset
-	end
-	
-	-- update the camera position to follow the flung bird
+	local target_zoom = math.max(1, math.min(1.5, math.sqrt(go.get_position().x / self.initial_position.x)))
 	if self.flinging then
 		local bounds = get_bounds(self)
-		zoom = 2 * (bounds.z - bounds.x + self.camera_offset.x) / WIDTH
-		print(bounds, zoom)
-		self.camera_target = vmath.vector3(bounds.x + (bounds.z - bounds.x) / 2, go.get_position().y, 0)
+		target_zoom = (bounds.z - bounds.x) / WIDTH
+		self.camera_target = vmath.vector3(bounds.x + ((bounds.z - bounds.x) * 0.25), go.get_position().y, 0) - self.camera_offset	
 	end
-	--zoom = 
-	
+
+	--
+	-- move and zoom the camera towards the target position and zoom level
+	--
+	self.camera_zoom = self.camera_zoom + (target_zoom - self.camera_zoom) * 0.05
+	go.set_position(vmath.lerp(0.1, go.get_position("camera"), self.camera_target), "camera")
+	msg.post("@render:", "set_zoom", { zoom = self.camera_zoom })
+
 	--
 	-- do we have a bird in the air?
 	-- in this case we check if the bird is idle or still moving
