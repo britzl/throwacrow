@@ -3,8 +3,8 @@ instances {
   id: "explosives1"
   prototype: "/main/explosives.go"
   position {
-    x: 1324.6066
-    y: 285.52737
+    x: 1328.51
+    y: 285.1447
     z: 0.1
   }
   rotation {
@@ -705,7 +705,6 @@ embedded_instances {
   "mask: \\\"block\\\"\\n"
   "mask: \\\"wind\\\"\\n"
   "mask: \\\"cursor\\\"\\n"
-  "mask: \\\"pig\\\"\\n"
   "embedded_collision_shape {\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_SPHERE\\n"
@@ -2317,7 +2316,6 @@ embedded_instances {
   "group: \\\"ground\\\"\\n"
   "mask: \\\"block\\\"\\n"
   "mask: \\\"bird\\\"\\n"
-  "mask: \\\"pig\\\"\\n"
   "embedded_collision_shape {\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
@@ -2721,7 +2719,6 @@ embedded_instances {
   "group: \\\"wind\\\"\\n"
   "mask: \\\"bird\\\"\\n"
   "mask: \\\"block\\\"\\n"
-  "mask: \\\"pig\\\"\\n"
   "embedded_collision_shape {\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
@@ -2810,7 +2807,6 @@ embedded_instances {
   "group: \\\"wind\\\"\\n"
   "mask: \\\"bird\\\"\\n"
   "mask: \\\"block\\\"\\n"
-  "mask: \\\"pig\\\"\\n"
   "embedded_collision_shape {\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"

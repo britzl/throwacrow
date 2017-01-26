@@ -17,6 +17,7 @@ height = 720
 scale = 0.02
 gravity_y = -1000
 debug = 0
+max_collisions = 200
 
 [script]
 shared_state = 1

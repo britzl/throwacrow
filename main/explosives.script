@@ -1,0 +1,23 @@
+local TRIGGER_RESPONSE = hash("trigger_response")
+local DESTROYED = hash("destroyed")
+
+function init(self)
+	self.nearby = {}
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == DESTROYED then
+		local pos = go.get_world_position()
+		for id,_ in pairs(self.nearby) do
+			local target_pos = go.get_world_position(id)
+			local force = vmath.normalize(target_pos - pos) * 10000000
+			msg.post(id, "apply_force", { force = force, position = target_pos })
+		end
+	elseif message_id == TRIGGER_RESPONSE then
+		if message.enter then
+			self.nearby[message.other_id] = true
+		else
+			self.nearby[message.other_id] = nil
+		end
+	end
+end
