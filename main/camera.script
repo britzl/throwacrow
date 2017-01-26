@@ -8,22 +8,11 @@ function final(self)
 end
 
 function update(self, dt)
+	--
+	-- limit the vertical position so that we don't scroll below the original position
+	-- there's no point looking at a lot of ground
+	--
 	local pos = go.get_position()
 	pos.y = math.max(pos.y, self.initial_position.y)
 	go.set_position(pos)
-end
-
-function on_message(self, message_id, message, sender)
-    -- Add message-handling code here
-    -- Remove this function if not needed
-end
-
-function on_input(self, action_id, action)
-    -- Add input-handling code here
-    -- Remove this function if not needed
-end
-
-function on_reload(self)
-    -- Add reload-handling code here
-    -- Remove this function if not needed
 end
