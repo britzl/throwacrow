@@ -64,9 +64,9 @@ function on_input(self, action_id, action)
 		elseif action.released then
 			-- did we release while aiming? if yes, then fling the bird
 			if self.aiming then
-				local direction = self.pressed_position - action_position
+				local direction = self.initial_position - go.get_position()
 				msg.post("#collisionobject", "enable")
-				msg.post("#collisionobject", "apply_force", { force = direction * 250 * go.get("#collisionobject", "mass"), position = go.get_world_position() })
+				msg.post("#collisionobject", "apply_force", { force = direction * 950 * go.get("#collisionobject", "mass"), position = go.get_world_position() })
 				msg.post(".", "release_input_focus")
 				self.flinging = true
 				self.aiming = false
