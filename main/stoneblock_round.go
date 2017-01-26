@@ -46,6 +46,7 @@ embedded_components {
   "mask: \"bird\"\n"
   "mask: \"ground\"\n"
   "mask: \"wind\"\n"
+  "mask: \"pig\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_SPHERE\n"

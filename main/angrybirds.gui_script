@@ -1,9 +1,20 @@
 function init(self)
 	self.score = gui.get_node("score")
+	self.lives = { gui.get_node("life1"), gui.get_node("life2"), gui.get_node("life3"), gui.get_node("life4"), gui.get_node("life5") }
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("update_score") then
 		gui.set_text(self.score, tostring(message.score))
+	elseif message_id == hash("update_lives") then
+		local alpha100 = vmath.vector4(1, 1, 1, 1)
+		local alpha20 = vmath.vector4(1, 1, 1, 0.2)
+		for i,node in ipairs(self.lives) do
+			if i <= message.lives then
+				gui.set_color(node, alpha100)
+			else
+				gui.set_color(node, alpha20)
+			end
+		end
 	end
 end

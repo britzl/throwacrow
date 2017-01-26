@@ -1,4 +1,19 @@
 components {
+  id: "pig_script"
+  component: "/main/pig.script"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+components {
   id: "script"
   component: "/main/block.script"
   position {
@@ -46,7 +61,7 @@ embedded_components {
   "mass: 500.0\n"
   "friction: 0.9\n"
   "restitution: 0.2\n"
-  "group: \"block\"\n"
+  "group: \"pig\"\n"
   "mask: \"block\"\n"
   "mask: \"bird\"\n"
   "mask: \"ground\"\n"

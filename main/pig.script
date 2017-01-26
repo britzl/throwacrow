@@ -1,0 +1,3 @@
+function init(self)
+	msg.post("angrybirds", "register_pig", { id = go.get_id() })
+end

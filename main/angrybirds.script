@@ -16,6 +16,8 @@ function init(self)
 	self.aiming = false			-- true if we are currently aiming
 	self.idle_frames = 0		-- the number of frames where the flung bird has been idle
 	self.score = 0
+	self.lives = 5
+	self.pigs = {}				-- the list of pigs on the level, pigs will register themselves when created, see on_message()
 end
 
 function final(self)
@@ -31,7 +33,10 @@ function update(self, dt)
 	go.set_position(go.get_world_position() - self.camera_offset, "camera")
 	msg.post("@render:", "set_zoom", { zoom = math.max(1, math.min(1.5, math.sqrt(go.get_position().x / self.initial_position.x))) })
 	
+	--
 	-- do we have a bird in the air?
+	-- in this case we check if the bird is idle or still moving
+	--
 	if self.flinging then
 		-- get angular and linear velocity and start counting the number of frames when
 		-- we're more or less still/idle
@@ -43,10 +48,17 @@ function update(self, dt)
 			self.idle_frames = self.idle_frames + 1
 			if self.idle_frames > 60 then
 				msg.post("#collisionobject", "disable")
-				msg.post(".", "acquire_input_focus")
-				go.set_position(self.initial_position)
-				go.set_rotation(self.initial_rotation)
-				self.flinging = false
+				self.lives = self.lives - 1
+				msg.post("#gui", "update_lives", { lives = self.lives })
+				if self.lives > 0 then
+					msg.post(".", "acquire_input_focus")
+					go.set_position(self.initial_position)
+					go.set_rotation(self.initial_rotation)
+					self.flinging = false
+				else
+					self.flinging = false
+					print("out of birds!")
+				end
 			end
 		else
 			self.idle_frames = 0
@@ -55,9 +67,31 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
+	--
+	-- "destroyed_block" message is sent by the block.script when a block is destroyed
+	-- add score and check if destroyed block was a pig
+	--
 	if message_id == hash("destroyed_block") then
+		-- add the score and update the gui
 		self.score = self.score + message.score
 		msg.post("#gui", "update_score", { score = self.score })
+		-- check if the destroyed block was a pig, in which case we flag it
+		-- as dead and check if all pigs on the level are dead or not
+		if self.pigs[message.id] then
+			self.pigs[message.id] = false
+			for pig,alive in pairs(self.pigs) do
+				if alive then
+					return
+				end
+			end
+			print("all pigs are dead")
+		end
+	--
+	-- "register_pig" message is sent by the pig.script
+	-- add the id of the game object to the set of pigs and flag it as alive
+	--
+	elseif message_id == hash("register_pig") then
+		self.pigs[message.id] = true
 	end
 end
 
