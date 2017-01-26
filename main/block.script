@@ -1,8 +1,8 @@
-go.property("durability", 200)
-go.property("undamaged", hash("elementStone011"))
-go.property("damaged", hash("elementStone014"))
-go.property("almost_destroyed", hash("elementStone046"))
-go.property("debris", true)
+go.property("durability", 200)								-- the amount of damage the block can take before destroyed
+go.property("undamaged", hash("elementStone011"))			-- the sprite to show when block has only little damage
+go.property("damaged", hash("elementStone014"))				-- the sprite to show when block has medium amount of damage
+go.property("almost_destroyed", hash("elementStone046"))	-- the sprite to show when block is almost destroyed
+go.property("debris", true)									-- if debris should be created when the block is destroyed
 
 local COLLISION_RESPONSE = hash("collision_response")
 local GROUND = hash("ground")
@@ -10,6 +10,10 @@ local GROUND = hash("ground")
 function init(self)
 	self.mass = go.get("#collisionobject", "mass")
 	self.initial_durability = self.durability
+	--
+	-- create ordered list of the damage levels
+	-- this will be used to lookup which sprite to use
+	--
 	self.damage_levels = { self.almost_destroyed, self.damaged, self.undamaged }
 end
 
@@ -19,19 +23,26 @@ function on_message(self, message_id, message, sender)
 		local other_velocity = vmath.length(go.get(other_url, "linear_velocity"))
 		local other_mass = go.get(other_url, "mass")
 
+		--
 		-- damage is based on the mass ratio between what we're colliding with and own mass
 		-- combined with the velocity of the object we're colliding with
 		-- if we are colliding with the ground we use own velocity and a fixed mass
+		--
 		local velocity = other_velocity
 		if message.group == GROUND then
 			velocity = vmath.length(go.get("#collisionobject", "linear_velocity"))
 			other_mass = 1000
 		end
 
+		--
 		-- only apply damage if the velocity is high enough
+		--
 		if velocity > 20 then
 			local damage = velocity * 0.01 * self.mass / other_mass
 			self.durability = self.durability - damage
+			--
+			-- remove the block if it is destroyed and potentially also spawn some debris
+			--
 			if self.durability <= 0 then
 				go.delete()
 				if self.debris then
@@ -41,7 +52,12 @@ function on_message(self, message_id, message, sender)
 						local scale = math.random(5, 8) / 10
 						factory.create("#factory", pos, rot, {}, scale)
 					end
+					self.debris = false
 				end
+			--
+			-- the block is not destroyed
+			-- update the sprite to reflect current state
+			--
 			else
 				local damage_level = math.ceil(3 * self.durability / self.initial_durability)
 				msg.post("#sprite", "play_animation", { id = self.damage_levels[damage_level] })

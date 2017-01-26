@@ -1,3 +1,7 @@
+--
+-- add a parallax effect to the game object this script is attached to
+--
+
 function init(self)
 	self.initial_camera_position = go.get_position("camera")
 	self.initial_position = go.get_position()
@@ -5,6 +9,11 @@ function init(self)
 end
 
 function update(self, dt)
+	--
+	-- offset the game object based on how far the camera has
+	-- scrolled from it's initial position and the z-value of this
+	-- game object
+	--
 	local camera_position = go.get_position("camera")
 	local diff = self.initial_camera_position - camera_position
 	diff.y = diff.y * 0.25
