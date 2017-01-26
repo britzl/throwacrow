@@ -2,6 +2,7 @@ go.property("durability", 200)
 go.property("undamaged", hash("elementStone011"))
 go.property("damaged", hash("elementStone014"))
 go.property("almost_destroyed", hash("elementStone046"))
+go.property("debris", true)
 
 local COLLISION_RESPONSE = hash("collision_response")
 local GROUND = hash("ground")
@@ -33,11 +34,13 @@ function on_message(self, message_id, message, sender)
 			self.durability = self.durability - damage
 			if self.durability <= 0 then
 				go.delete()
-				for i=1,5 do
-					local pos = go.get_world_position() + vmath.vector3(math.random(-30, 30), math.random(-30, 30), 0)
-					local rot = vmath.quat_rotation_z(math.rad(math.random(360)))
-					local scale = math.random(5, 8) / 10
-					factory.create("#factory", pos, rot, {}, scale)
+				if self.debris then
+					for i=1,5 do
+						local pos = go.get_world_position() + vmath.vector3(math.random(-30, 30), math.random(-30, 30), 0)
+						local rot = vmath.quat_rotation_z(math.rad(math.random(360)))
+						local scale = math.random(5, 8) / 10
+						factory.create("#factory", pos, rot, {}, scale)
+					end
 				end
 			else
 				local damage_level = math.ceil(3 * self.durability / self.initial_durability)

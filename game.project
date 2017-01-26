@@ -4,6 +4,7 @@ version = 0.1
 
 [bootstrap]
 main_collection = /main/angrybirds.collectionc
+render = /render/custom.renderc
 
 [input]
 game_binding = /input/game.input_bindingc
@@ -14,7 +15,7 @@ height = 720
 
 [physics]
 scale = 0.02
-gravity_y = -500
+gravity_y = -1000
 debug = 0
 
 [script]

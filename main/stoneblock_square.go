@@ -14,7 +14,7 @@ components {
   }
   properties {
     id: "durability"
-    value: "100.0"
+    value: "3500.0"
     type: PROPERTY_TYPE_NUMBER
   }
 }
@@ -30,6 +30,7 @@ embedded_components {
   "mask: \"block\"\n"
   "mask: \"bird\"\n"
   "mask: \"ground\"\n"
+  "mask: \"wind\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

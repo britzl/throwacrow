@@ -14,7 +14,7 @@ components {
   }
   properties {
     id: "durability"
-    value: "100.0"
+    value: "1000.0"
     type: PROPERTY_TYPE_NUMBER
   }
   properties {
@@ -38,13 +38,14 @@ embedded_components {
   type: "collisionobject"
   data: "collision_shape: \"\"\n"
   "type: COLLISION_OBJECT_TYPE_DYNAMIC\n"
-  "mass: 400.0\n"
+  "mass: 200.0\n"
   "friction: 1.0\n"
   "restitution: 0.2\n"
   "group: \"block\"\n"
   "mask: \"block\"\n"
   "mask: \"bird\"\n"
   "mask: \"ground\"\n"
+  "mask: \"wind\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

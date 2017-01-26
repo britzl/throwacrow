@@ -28,6 +28,7 @@ function update(self, dt)
 	
 	-- update the camera position to follow the flung bird
 	go.set_position(go.get_world_position() - self.camera_offset, "camera")
+	msg.post("@render:", "set_zoom", { zoom = math.max(1, math.min(1.5, math.sqrt(go.get_position().x / self.initial_position.x))) })
 	
 	-- do we have a bird in the air?
 	if self.flinging then
@@ -39,7 +40,7 @@ function update(self, dt)
 		local angular_velocity = go.get("#collisionobject", "angular_velocity")
 		if vmath.length(linear_velocity) < 5 and vmath.length(angular_velocity) < 5 then
 			self.idle_frames = self.idle_frames + 1
-			if self.idle_frames > 10 then
+			if self.idle_frames > 60 then
 				msg.post("#collisionobject", "disable")
 				msg.post(".", "acquire_input_focus")
 				go.set_position(self.initial_position)
