@@ -8,6 +8,9 @@ Defold implementation of the popular game [Angry Birds by Rovio Entertainment](h
 4. Make the explosive blocks actually explode
 5. Adjust the camera zoom level to show all pigs plus the flung bird
 
+## Improved version
+An improved version of the game with the above features implemented can be found in the 'improved' branch.
+
 ## Credits
 Game graphics by [Kenney](http://www.kenney.com)
 Background graphics by [MobileGameGraphics.com](http://www.mobilegamegraphics.com)
