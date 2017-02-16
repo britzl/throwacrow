@@ -1,6 +1,6 @@
 components {
-  id: "pig"
-  component: "/main/pig.script"
+  id: "hippo"
+  component: "/main/hippo.script"
   position {
     x: 0.0
     y: 0.0
@@ -34,17 +34,17 @@ components {
   }
   properties {
     id: "undamaged"
-    value: "pig"
+    value: "hippo"
     type: PROPERTY_TYPE_HASH
   }
   properties {
     id: "damaged"
-    value: "pig"
+    value: "hippo"
     type: PROPERTY_TYPE_HASH
   }
   properties {
     id: "almost_destroyed"
-    value: "pig"
+    value: "hippo"
     type: PROPERTY_TYPE_HASH
   }
   properties {
@@ -126,8 +126,8 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/main/angrybirds.atlas\"\n"
-  "default_animation: \"pig\"\n"
+  data: "tile_set: \"/main/throwacrow.atlas\"\n"
+  "default_animation: \"hippo\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""

@@ -26,7 +26,7 @@ function init(self)
 	self.idle_frames = 0		-- the number of frames where the flung bird has been idle
 	self.score = 0
 	self.lives = 5
-	self.pigs = {}				-- the list of pigs on the level, pigs will register themselves when created, see on_message()
+	self.hippos = {}				-- the list of hippos on the level, hippos will register themselves when created, see on_message()
 end
 
 function final(self)
@@ -37,13 +37,13 @@ end
 local function get_bounds(self)
 	local pos = go.get_world_position()
 	local bounds = vmath.vector4(pos.x - (WIDTH / 2), pos.y - (HEIGHT / 2), pos.x + (WIDTH / 2), pos.y + (HEIGHT / 2))
-	for pig,alive in pairs(self.pigs) do
+	for hippo,alive in pairs(self.hippos) do
 		if alive then
-			local pig_pos = go.get_world_position(pig)
-			bounds.x = math.min(bounds.x, pig_pos.x)
-			bounds.z = math.max(bounds.z, pig_pos.x)
-			bounds.y = math.min(bounds.y, pig_pos.y)
-			bounds.w = math.max(bounds.w, pig_pos.y)
+			local hippo_pos = go.get_world_position(hippo)
+			bounds.x = math.min(bounds.x, hippo_pos.x)
+			bounds.z = math.max(bounds.z, hippo_pos.x)
+			bounds.y = math.min(bounds.y, hippo_pos.y)
+			bounds.w = math.max(bounds.w, hippo_pos.y)
 		end
 	end
 	return bounds
@@ -106,29 +106,29 @@ end
 function on_message(self, message_id, message, sender)
 	--
 	-- "destroyed_block" message is sent by the block.script when a block is destroyed
-	-- add score and check if destroyed block was a pig
+	-- add score and check if destroyed block was a hippo
 	--
 	if message_id == hash("destroyed_block") then
 		-- add the score and update the gui
 		self.score = self.score + message.score
 		msg.post("#gui", "update_score", { score = self.score })
-		-- check if the destroyed block was a pig, in which case we flag it
-		-- as dead and check if all pigs on the level are dead or not
-		if self.pigs[message.id] then
-			self.pigs[message.id] = false
-			for pig,alive in pairs(self.pigs) do
+		-- check if the destroyed block was a hippo, in which case we flag it
+		-- as dead and check if all hippos on the level are dead or not
+		if self.hippos[message.id] then
+			self.hippos[message.id] = false
+			for hippo,alive in pairs(self.hippos) do
 				if alive then
 					return
 				end
 			end
-			print("all pigs are dead")
+			print("all hippos are dead")
 		end
 	--
-	-- "register_pig" message is sent by the pig.script
-	-- add the id of the game object to the set of pigs and flag it as alive
+	-- "register_hippo" message is sent by the hippo.script
+	-- add the id of the game object to the set of hippos and flag it as alive
 	--
-	elseif message_id == hash("register_pig") then
-		self.pigs[message.id] = true
+	elseif message_id == hash("register_hippo") then
+		self.hippos[message.id] = true
 	end
 end
 

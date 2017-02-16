@@ -16,11 +16,7 @@ components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/main/angrybirds.atlas\"\n"
-  "default_animation: \"debrisWood_1\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
-  "blend_mode: BLEND_MODE_ALPHA\n"
-  ""
+  data: "tile_set: \"/main/throwacrow.atlas\"\ndefault_animation: \"debrisWood_1\"\n"
   position {
     x: 0.0
     y: 0.0

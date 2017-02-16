@@ -1,0 +1,3 @@
+function init(self)
+	msg.post("throwacrow", "register_hippo", { id = go.get_id() })
+end

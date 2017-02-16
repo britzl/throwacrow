@@ -108,7 +108,6 @@ embedded_components {
   id: "factory"
   type: "factory"
   data: "prototype: \"/main/debris.go\"\n"
-  ""
   position {
     x: 0.0
     y: 0.0
@@ -124,11 +123,7 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/main/angrybirds.atlas\"\n"
-  "default_animation: \"elementWood012\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
-  "blend_mode: BLEND_MODE_ALPHA\n"
-  ""
+  data: "tile_set: \"/main/throwacrow.atlas\"\ndefault_animation: \"elementWood012\"\n"
   position {
     x: 0.0
     y: 0.0

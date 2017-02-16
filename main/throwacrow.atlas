@@ -154,6 +154,12 @@ images {
 images {
   image: "/assets/images/ground1px.png"
 }
+images {
+  image: "/assets/images/crow.png"
+}
+images {
+  image: "/assets/images/hippo.png"
+}
 margin: 0
 extrude_borders: 4
 inner_padding: 0

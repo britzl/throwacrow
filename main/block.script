@@ -44,7 +44,7 @@ function on_message(self, message_id, message, sender)
 			-- remove the block if it is destroyed and potentially also spawn some debris
 			--
 			if self.durability <= 0 then
-				msg.post("angrybirds", "destroyed_block", { score = math.ceil(self.mass / 10) * 10, group = message.group, id = go.get_id() })
+				msg.post("throwacrow", "destroyed_block", { score = math.ceil(self.mass / 10) * 10, group = message.group, id = go.get_id() })
 				msg.post(".", "destroyed")
 				go.delete()
 				if self.debris then
