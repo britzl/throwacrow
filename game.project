@@ -1,9 +1,9 @@
 [project]
-title = Angry Birds
+title = Throw a Crow
 version = 0.1
 
 [bootstrap]
-main_collection = /main/angrybirds.collectionc
+main_collection = /main/throwacrow.collectionc
 render = /render/custom.renderc
 
 [input]

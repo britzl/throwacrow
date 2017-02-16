@@ -1,0 +1,212 @@
+script: "/main/throwacrow.gui_script"
+fonts {
+  name: "riffic_20"
+  font: "/assets/fonts/riffic_medium.font"
+}
+textures {
+  name: "angrybirds"
+  texture: "/main/throwacrow.atlas"
+}
+background_color {
+  w: 1.0
+}
+nodes {
+  position {
+    x: 1262.9866
+    y: 701.6378
+    w: 1.0
+  }
+  rotation {
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    w: 1.0
+  }
+  color {
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  text: "0"
+  font: "riffic_20"
+  id: "score"
+  pivot: PIVOT_NE
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  inherit_alpha: true
+  text_tracking: 0.1
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 50.0
+    y: 670.0
+    w: 1.0
+  }
+  rotation {
+    w: 1.0
+  }
+  scale {
+    x: 0.75
+    y: 0.75
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 70.0
+    y: 70.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  texture: "angrybirds/crow"
+  id: "life1"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 115.0
+    y: 670.0
+    w: 1.0
+  }
+  rotation {
+    w: 1.0
+  }
+  scale {
+    x: 0.75
+    y: 0.75
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 70.0
+    y: 70.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  texture: "angrybirds/crow"
+  id: "life2"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 180.0
+    y: 670.0
+    w: 1.0
+  }
+  rotation {
+    w: 1.0
+  }
+  scale {
+    x: 0.75
+    y: 0.75
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 70.0
+    y: 70.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  texture: "angrybirds/crow"
+  id: "life3"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 245.0
+    y: 670.0
+    w: 1.0
+  }
+  rotation {
+    w: 1.0
+  }
+  scale {
+    x: 0.75
+    y: 0.75
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 70.0
+    y: 70.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  texture: "angrybirds/crow"
+  id: "life4"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 310.0
+    y: 670.0
+    w: 1.0
+  }
+  rotation {
+    w: 1.0
+  }
+  scale {
+    x: 0.75
+    y: 0.75
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 70.0
+    y: 70.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  texture: "angrybirds/crow"
+  id: "life5"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+adjust_reference: ADJUST_REFERENCE_PARENT
