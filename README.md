@@ -1,4 +1,4 @@
-# Angry Birds
+# Throw-a-Crow
 Defold implementation of the popular game [Angry Birds by Rovio Entertainment](https://www.angrybirds.com/). The purpose of this project is to act as teaching material for creating a physics based game using Defold. The code in the main 'master' branch contains the beginnings of such a game and below you will find some exercises to add missing features and create a full game.
 
 ## Suggested exercises
@@ -12,7 +12,7 @@ Defold implementation of the popular game [Angry Birds by Rovio Entertainment](h
 An improved version of the game with the above features implemented can be found in the 'improved' branch.
 
 ## GitHub
-The latest version of this project can be found on GitHub: https://github.com/britzl/angrybirds
+The latest version of this project can be found on GitHub: https://github.com/britzl/throwacrow
 
 ## Credits
 Game graphics by [Kenney](http://www.kenney.com)
