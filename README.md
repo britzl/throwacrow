@@ -11,6 +11,9 @@ Defold implementation of the popular game [Angry Birds by Rovio Entertainment](h
 ## Improved version
 An improved version of the game with the above features implemented can be found in the 'improved' branch.
 
+### Try the improved version
+http://britzl.github.io/publicexamples/throwacrow/index.html
+
 ## GitHub
 The latest version of this project can be found on GitHub: https://github.com/britzl/throwacrow
 
