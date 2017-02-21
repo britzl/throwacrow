@@ -18,5 +18,5 @@ http://britzl.github.io/publicexamples/throwacrow/index.html
 The latest version of this project can be found on GitHub: https://github.com/britzl/throwacrow
 
 ## Credits
-Game graphics by [Kenney](http://www.kenney.com)
-Background graphics by [MobileGameGraphics.com](http://www.mobilegamegraphics.com)
+* Game graphics by [Kenney](http://www.kenney.com)
+* Background graphics by [MobileGameGraphics.com](http://www.mobilegamegraphics.com)
